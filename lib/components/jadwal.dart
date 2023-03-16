@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Jadwal extends StatelessWidget {
   const Jadwal({super.key});
@@ -8,9 +7,11 @@ class Jadwal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 53, 58, 63),
-      body: Container(
-        margin: const EdgeInsets.all(10),
-        child: const JadwalColumn(),
+      body: SafeArea(
+        child: Container(
+          margin: const EdgeInsets.all(10),
+          child: const JadwalColumn(),
+        ),
       )
     );
   }
@@ -107,7 +108,7 @@ class _JadwalColumnState extends State<JadwalColumn> {
   Widget build(BuildContext context) {
 
     var jadwalDropdown = DropdownButtonFormField(
-      dropdownColor: Color.fromARGB(255, 53, 58, 63),      
+      dropdownColor: Color.fromARGB(255, 53, 58, 63),
       decoration: const InputDecoration(
         enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 201, 242, 252))),
         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 201, 242, 252))),
