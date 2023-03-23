@@ -9,7 +9,7 @@ class Jadwal extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 53, 58, 63),
       body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.all(10),
+          margin: const EdgeInsets.all(20),
           child: const JadwalColumn(),
         ),
       )
@@ -53,10 +53,10 @@ class _JadwalColumnState extends State<JadwalColumn> {
   Map<String, Map> Mapel = {
     'Senin': {
       'data': [
-        { 'nama': 'B. Inggris', 'jam': 2, 'guru': 'lorem' },
-        { 'nama': 'Agama', 'jam': 3, 'guru': 'lorem' },
-        { 'nama': 'PKK', 'jam': 3, 'guru': 'lorem' },
-        { 'nama': 'PP', 'jam': 2, 'guru': 'lorem' }
+        { 'nama': 'B. Inggris', 'jam': 2, 'guru': 'Bu Eny' },
+        { 'nama': 'Agama', 'jam': 3, 'guru': 'Bu Rumu' },
+        { 'nama': 'PKK', 'jam': 3, 'guru': 'Pak Deddy' },
+        { 'nama': 'PP', 'jam': 2, 'guru': 'Bu Purwani' }
       ],
       'istirahat':[4, 6],
       'jampel': 35,
@@ -64,10 +64,10 @@ class _JadwalColumnState extends State<JadwalColumn> {
 
     'Selasa': {
       'data': [
-        { 'nama': 'B. Jawa', 'jam': 2, 'guru': 'lorem' },
-        { 'nama': 'PJOK', 'jam': 2, 'guru': 'lorem' },
-        { 'nama': 'B. Inggris', 'jam': 2, 'guru': 'lorem' },
-        { 'nama': 'MPP', 'jam': 4, 'guru': 'lorem' },
+        { 'nama': 'B. Jawa', 'jam': 2, 'guru': 'Bu Nur' },
+        { 'nama': 'PJOK', 'jam': 2, 'guru': 'Pak Andi' },
+        { 'nama': 'B. Inggris', 'jam': 2, 'guru': 'Bu Eny' },
+        { 'nama': 'MPP', 'jam': 4, 'guru': '?' },
       ],
       'istirahat':[4, 6],
       'jampel':45
@@ -75,9 +75,9 @@ class _JadwalColumnState extends State<JadwalColumn> {
 
     'Rabu': {
       'data': [
-        { 'nama': 'Math', 'jam': 3, 'guru': 'lorem' },
-        { 'nama': 'PKK', 'jam': 2, 'guru': 'lorem' },
-        { 'nama': 'B. Indo', 'jam': 3, 'guru': 'lorem' },
+        { 'nama': 'Math', 'jam': 3, 'guru': 'Bu Husnul' },
+        { 'nama': 'PKK', 'jam': 2, 'guru': 'Pak Deddy' },
+        { 'nama': 'B. Indo', 'jam': 3, 'guru': 'Bu Lusi' },
       ],
       'istirahat':[4, 6],
       'jampel':45
@@ -85,9 +85,9 @@ class _JadwalColumnState extends State<JadwalColumn> {
 
     'Kamis': {
       'data': [
-        { 'nama': 'ASJ', 'jam': 4, 'guru': 'lorem' },
-        { 'nama': 'KJ', 'jam': 4, 'guru': 'lorem' },
-        { 'nama': 'Sejarah', 'jam': 2, 'guru': 'lorem' },
+        { 'nama': 'ASJ', 'jam': 4, 'guru': 'Bu Riya' },
+        { 'nama': 'KJ', 'jam': 4, 'guru': 'Bu Riya' },
+        { 'nama': 'Sejarah', 'jam': 2, 'guru': 'Bu Nunuk' },
       ],
       'istirahat':[4, 6],
       'jampel':45
@@ -95,9 +95,9 @@ class _JadwalColumnState extends State<JadwalColumn> {
     
     'Jumat': {
       'data': [
-        { 'nama': 'PPJ', 'jam': 3, 'guru': 'lorem' },
-        { 'nama': 'TKJN', 'jam': 3, 'guru': 'lorem' },
-        { 'nama': 'PKPJ', 'jam': 4, 'guru': 'lorem' },
+        { 'nama': 'PPJ', 'jam': 3, 'guru': 'Pak Heri' },
+        { 'nama': 'TKJN', 'jam': 3, 'guru': 'Pak Heri' },
+        { 'nama': 'PKPJ', 'jam': 4, 'guru': 'Pak Deddy' },
       ],
       'istirahat':[4, 7],
       'jampel':35
@@ -110,9 +110,9 @@ class _JadwalColumnState extends State<JadwalColumn> {
     var jadwalDropdown = DropdownButtonFormField(
       dropdownColor: Color.fromARGB(255, 53, 58, 63),
       decoration: const InputDecoration(
-        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 201, 242, 252))),
-        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 201, 242, 252))),
-        border: OutlineInputBorder(borderSide: BorderSide(color: Color.fromARGB(255, 201, 242, 252)))
+        enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4)), borderSide: BorderSide(color: Color.fromARGB(255, 201, 242, 252))),
+        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4)), borderSide: BorderSide(color: Color.fromARGB(255, 201, 242, 252))),
+        border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(4)), borderSide: BorderSide(color: Color.fromARGB(255, 201, 242, 252)))
       ),
       style: TextStyle(color: Color.fromARGB(255, 201, 242, 252)),
       value: selectedHari,
@@ -136,11 +136,20 @@ class _JadwalColumnState extends State<JadwalColumn> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: List.generate(Mapel[selectedHari]!['data'].length, (index){
-          return Container(
-            margin: const EdgeInsets.symmetric(vertical: 4),
-            decoration: BoxDecoration(border: Border.all(width: 1, color: Color.fromARGB(255, 201, 242, 252)), borderRadius: BorderRadius.circular(2)),
-            child: JadwalItem(data: Mapel[selectedHari]!['data'][index], jampel: Mapel[selectedHari]!['jampel']),
-          );
+          DateTime seven = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 7);
+          int tambahan = 0;
+          int jampel = this.Mapel[selectedHari]!['jampel'];
+
+          for (var i = 0; i < index; i++) {
+            int jam = this.Mapel[selectedHari]!['data'][i]['jam'];
+            tambahan += jam;
+          }
+
+          DateTime awal = seven.add(Duration(minutes: tambahan * jampel));
+          DateTime akhir = awal.add(Duration(minutes: Mapel[selectedHari]!['data'][index]['jam'] * jampel));
+          bool active = DateTime.now().isAfter(awal) && DateTime.now().isBefore(akhir);
+
+          return JadwalItem(data: Mapel[selectedHari]!['data'][index], active: active);
         })
       ),
     ) : jadwalEmpty;
@@ -161,27 +170,33 @@ class _JadwalColumnState extends State<JadwalColumn> {
 
 class JadwalItem extends StatefulWidget {
   final Map data;
-  final int jampel;
+  final bool active;
 
-  const JadwalItem({super.key, required this.data, required this.jampel});
+  const JadwalItem({super.key, required this.data, required this.active});
 
   @override
   State<JadwalItem> createState() => _JadwalItemState();
 }
 
 class _JadwalItemState extends State<JadwalItem> {
-  bool active = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(widget.data!['nama'], style: TextStyle(color: Color.fromARGB(255, 201, 242, 252))),
+      decoration: BoxDecoration(
+        color: Color.fromARGB(25,0,0,0),
+        borderRadius: BorderRadius.circular(4),
+        border: widget.active ? Border.all(color: Color.fromARGB(255, 201, 242, 252)) : null
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(widget.data['nama'], style: TextStyle(color: Color.fromARGB(255, 201, 242, 252))),
+          SizedBox(height: 12),
+          Text(widget.data['guru'], style: TextStyle(color: Color.fromARGB(175, 201, 242, 252)), textAlign: TextAlign.end)
+        ],
+      ),
       padding: EdgeInsets.all(20),
+      margin: EdgeInsets.symmetric(vertical: 8),
     );
   }
 }
