@@ -37,6 +37,8 @@ class _JadwalColumnState extends State<JadwalColumn> {
     'Jumat',
   ];
 
+  List<Widget> jadwalListItems = [];
+
   @override
   void initState() {
     seven = new DateTime(seven.year, seven.month, seven.day, 7, 0, 0, 0, 0);
@@ -135,22 +137,34 @@ class _JadwalColumnState extends State<JadwalColumn> {
       child: Text('Empty', style: TextStyle(color: Color.fromARGB(255, 201, 242, 252))),
     );
 
-    List<Widget> jadwalListItems = Mapel[selectedHari] != null ? List.generate(Mapel[selectedHari]!['data'].length, (index){
-      DateTime seven = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 7);
-      int tambahan = 0;
-      int jampel = this.Mapel[selectedHari]!['jampel'];
+    if (Mapel[selectedHari] != null){
+      jadwalListItems = [];
+      List istirahat = [3, 6];
 
-      for (var i = 0; i < index; i++) {
-        int jam = this.Mapel[selectedHari]!['data'][i]['jam'];
-        tambahan += jam;
-      };
+      List.generate(Mapel[selectedHari]!['data'].length, (index){
+        DateTime seven = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 7);
+        int tambahan = 0;
+        int tambahan_akhir = 0;
+        int jampel = this.Mapel[selectedHari]!['jampel'];
 
-      DateTime awal = seven.add(Duration(minutes: tambahan * jampel));
-      DateTime akhir = awal.add(Duration(minutes: Mapel[selectedHari]!['data'][index]['jam'] * jampel));
-      bool active = DateTime.now().isAfter(awal) && DateTime.now().isBefore(akhir);
+        for (var i = 0; i < index; i++) {
+          int jam = this.Mapel[selectedHari]!['data'][i]['jam'];
+          tambahan += jam;
+        };
 
-      return JadwalItem(data: Mapel[selectedHari]!['data'][index], active: active);
-    }).toList() : [jadwalEmpty];
+        tambahan_akhir = tambahan + Mapel[selectedHari]!['data'][index]['jam'] as int;
+
+
+        DateTime awal = seven.add(Duration(minutes: tambahan * jampel));
+        DateTime akhir = awal.add(Duration(minutes: Mapel[selectedHari]!['data'][index]['jam'] * jampel));
+        bool active = DateTime.now().isAfter(awal) && DateTime.now().isBefore(akhir);
+
+
+        jadwalListItems.add(JadwalItem(data: Mapel[selectedHari]!['data'][index], active: active));
+      });
+    } else {
+      jadwalListItems = [jadwalEmpty];
+    }
 
     var jadwalList = Expanded(
       child: Column(
